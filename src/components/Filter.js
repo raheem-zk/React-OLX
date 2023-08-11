@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Filter() {
   return (
-    <div className='shadow-md px-32 pb-2'>
+    <div className='shadow-md px-32 pb-3'>
       <div className='flex shadow-inner mt-2 pt-1'>
         <div className='flex'>
             <h4 className='uppercase text-sm font-semibold'>All categories</h4>
