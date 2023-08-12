@@ -7,9 +7,10 @@ export default function Header() {
   const showModal = () => {
     setModal(true);
   };
+
   return (
     <>
-      {modal ? <SignUp /> : ""}
+      {modal ? <SignUp setModal={setModal} /> : ""}
       <div className="bg-gray-100">
         <div className="flex justify-between py-3 px-28">
           <div>
