@@ -17,7 +17,7 @@ export default function Card() {
               <div className="absolute top-2 right-2 bg-white rounded-full py-1 px-2">
                 <i class="fa-regular fa-heart fa-lg"></i>
               </div>
-              <h3 className="font-bold text-xl mt-3">$ 48,000</h3>
+              <h3 className="font-bold text-xl mt-3">₹ 48,000</h3>
               <p>3 bds -3 Ba - 1650 ft2</p>
               <p>villa plot BHK 4 cent</p>
               <div className="flex justify-between text-gray-400 text-sm">
@@ -37,7 +37,7 @@ export default function Card() {
               <div className="absolute top-2 right-2 bg-white rounded-full py-1 px-2">
                 <i class="fa-regular fa-heart fa-lg"></i>
               </div>
-              <h3 className="font-bold text-xl mt-3">$ 48,000</h3>
+              <h3 className="font-bold text-xl mt-3">₹ 48,000</h3>
               <p>3 bds -3 Ba - 1650 ft2</p>
               <p>villa plot BHK 4 cent</p>
               <div className="flex justify-between text-gray-400 text-sm">
@@ -57,7 +57,7 @@ export default function Card() {
               <div className="absolute top-2 right-2 bg-white rounded-full py-1 px-2">
                 <i class="fa-regular fa-heart fa-lg"></i>
               </div>
-              <h3 className="font-bold text-xl mt-3">$ 48,000</h3>
+              <h3 className="font-bold text-xl mt-3">₹ 48,000</h3>
               <p>3 bds -3 Ba - 1650 ft2</p>
               <p>villa plot BHK 4 cent</p>
               <div className="flex justify-between text-gray-400 text-sm">
@@ -77,7 +77,7 @@ export default function Card() {
               <div className="absolute top-2 right-2 bg-white rounded-full py-1 px-2">
                 <i class="fa-regular fa-heart fa-lg"></i>
               </div>
-              <h3 className="font-bold text-xl mt-3">$ 48,000</h3>
+              <h3 className="font-bold text-xl mt-3">₹ 48,000</h3>
               <p>3 bds -3 Ba - 1650 ft2</p>
               <p>villa plot BHK 4 cent</p>
               <div className="flex justify-between text-gray-400 text-sm">
