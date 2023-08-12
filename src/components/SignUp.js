@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 export default function SignUp({ setModal }) {
   const [mailSign, showMailSign] = useState(true);
+  const [signUp ,showSignUpPage] = useState(true)
+  const [login ,showLoginPage] = useState(true)
 
   function onclose() {
     setModal(false);
@@ -9,11 +11,19 @@ export default function SignUp({ setModal }) {
 
   const backIcon = () => {
     showMailSign(true);
+    showSignUpPage(true)
+    showLoginPage(true)
   };
 
-  const showMail = () => {
+  const showSignuUp = () => {
     showMailSign(false);
+    showSignUpPage(false)
   };
+
+  const handleLogin = () => {
+    showLoginPage(false)
+    showMailSign(false)
+  }
 
   return (
     <div className="z-40 h-screen w-screen absolute top-0 flex justify-center items-center backdrop-brightness-50">
@@ -34,8 +44,7 @@ export default function SignUp({ setModal }) {
         <div className="flex flex-col gap-3 my-5">
           <div className="relative flex-1 flex">
             <input
-             onClick={showMail} 
-            
+             onClick={showSignuUp} 
               type="text"
               placeholder="Continue with Email address"
               className="cursor-pointer flex-1 w-96 pl-10 py-3 border-2 border-cyan-950 rounded-md placeholder-cyan-900 font-semibold hover:border-4"
@@ -60,7 +69,7 @@ export default function SignUp({ setModal }) {
           <p className="uppercase text-center font-semibold text-sm">or</p>
         </div>
         <div className="my-3">
-          <h6 className="underline font-semibold text-center cursor-pointer">
+          <h6 onClick={handleLogin} className="underline font-semibold text-center cursor-pointer">
             Login with Email
           </h6>
         </div>
@@ -80,7 +89,7 @@ export default function SignUp({ setModal }) {
         </div>
       </div>
 
-      <div className={`${mailSign ? `hidden` : `bg-white rounded-sm p-4`}`}>
+      <div className={`${signUp ? `hidden` : `bg-white rounded-sm p-4`}`}>
         <div className="flex justify-between mt-3">
           <i
             onClick={backIcon}
@@ -95,7 +104,7 @@ export default function SignUp({ setModal }) {
             alt="Banner"
           />
           <p className="text-cyan-900 font-bold text-xl my-5">
-            Enter your phone number
+            Enter your Email address
           </p>
         </div>
         <div className="flex flex-col flex-1">
@@ -114,6 +123,47 @@ export default function SignUp({ setModal }) {
           <p>
             Your contact number is never shared with external parties <br /> not
             do we use it to spam you in any way.
+          </p>
+        </div>
+      </div>
+
+      <div className={`${login ? `hidden` : `bg-white rounded-sm p-4`}`}>
+        <div className="flex justify-between mt-3">
+          <i
+            onClick={backIcon}
+            class="fa-solid fa-arrow-left fa-lg cursor-pointer"
+          ></i>
+          <i onClick={onclose} class="fa-solid fa-x fa-xl cursor-pointer"></i>
+        </div>
+        <div className="flex justify-center items-center flex-col text-center">
+          <img
+            src="https://www.olxgroup.com/wp-content/uploads/2023/01/OLX_Logo1.svg"
+            className="w-24"
+            alt="Banner"
+          />
+          <p className="text-cyan-900 font-bold text-xl my-5">
+            Enter your Email address
+          </p>
+        </div>
+        <div className="flex flex-col flex-1">
+          <input
+            type="text"
+            placeholder="Email"
+            className="border border-gray-600 rounded-md w-96 pl-2 py-2"
+          />
+        </div>
+        <div className="mt-16 text-sm text-center">
+          <p>if your are a new user please select any other login <br />option from previous page.</p>
+        </div>
+        <div className="flex flex-1 mt-16 ">
+          <button className="bg-cyan-950 text-white py-2 font-bold rounded-sm flex-1">
+            Next
+          </button>
+        </div>
+        <div className="text-center text-gray-500 text-xs mt-2 mb-32">
+          <p>
+            Your Email is never shared with external parties not
+            do we<br /> use it to spam you in any way.
           </p>
         </div>
       </div>
