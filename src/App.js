@@ -1,17 +1,24 @@
-import React from 'react'
-import Header from './components/header'
-import Filter from './components/Filter'
-import Card from './components/Card'
-import SignUp from './components/SignUp'
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/header";
+import Filter from "./components/Filter";
+import Card from "./components/Card";
 
 export default function App() {
   return (
-    <div className='relative'>
-      <Header/>
-      <Filter/>
-      <Card/>
-      <SignUp/>
+    <div className="relative">
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Header />
+              <Filter />
+              <Card />
+            </>
+          }
+        />
+      </Routes>
     </div>
-  )
+  );
 }
-

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function SignUp() {
   return (
-    <div className="h-screen w-screen absolute top-0 flex justify-center items-center backdrop-brightness-50">
+    <div className="z-40 h-screen w-screen absolute top-0 flex justify-center items-center backdrop-brightness-50">
       <div className="bg-white rounded-sm p-4">
         <div className="flex justify-end p-2 pt-3">
           <i class="fa-solid fa-x fa-xl cursor-pointer"></i>
@@ -55,8 +55,8 @@ export default function SignUp() {
           </div>
           <div className="mt-4">
             <p>
-              if you continue, you are accepting{" "}
-              <span className="text-blue-500">
+              if you continue, you are accepting
+              <span className="text-blue-500 cursor-pointer">
                 OLX Terms and <br />
                 Conditions and Privacy Policy
               </span>
