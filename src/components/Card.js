@@ -1,92 +1,56 @@
-import React from "react";
+import { onSnapshot } from "firebase/firestore";
+import React, { useContext, useEffect, useState } from "react";
+import { productCollectionRef } from "../constants/collection";
+import { Link } from "react-router-dom";
+import Post, { PostContext } from "../store/PostContext";
 
 export default function Card() {
-  return (
+  const [products, setProducts]= useState([]);
+  const {postDetails, setPostDetails} = useContext(PostContext);
+  useEffect(()=>{
+    getProducts();
+  },[]);
+  console.log(products);
+  const getProducts = ()=>{
+    onSnapshot(productCollectionRef, (querySnapshot)=>{
+      const items =[];
+      querySnapshot.forEach((doc)=>{
+        items.push({ id: doc.id, ...doc.data() });
+      })
+      setProducts(items);
+    })
+  }
+  console.log(postDetails)
+
+  
+  return !products ?'loading...':(
     <div className="px-32 py-5">
       <div>
         <h1 className="text-2xl">Fresh recommendations</h1>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-3 p-4">
-        <div className="border border-gray-400 rounded-sm">
-          <div className="w-25 p-2">
-            <div className="relative cursor-pointer">
-              <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.1YM53mG10H_U25iPjop83QHaEo%26pid%3DApi&f=1&ipt=e7e921477d4dc151562bbef7433e465bc2abe7390122127218b510c3056552cc&ipo=images"
-                alt=""
-              />
-              <div className="absolute top-2 right-2 bg-white rounded-full py-1 px-2">
-                <i class="fa-regular fa-heart fa-lg"></i>
-              </div>
-              <h3 className="font-bold text-xl mt-3">₹ 48,000</h3>
-              <p>3 bds -3 Ba - 1650 ft2</p>
-              <p>villa plot BHK 4 cent</p>
-              <div className="flex justify-between text-gray-400 text-sm">
-                <p>Paris ,Noida</p>
-                <p className="uppercase">Jul 22</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="border border-gray-400 rounded-sm">
+        {products.map((product)=>(
+          <div className="border border-gray-400 rounded-sm" key={product.id}>
           <div className="w-25 p-2">
             <div className="relative">
+              <Link to='/view' onClick={()=> setPostDetails(product)}>
               <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.1YM53mG10H_U25iPjop83QHaEo%26pid%3DApi&f=1&ipt=e7e921477d4dc151562bbef7433e465bc2abe7390122127218b510c3056552cc&ipo=images"
-                alt=""
-              />
+                src={product.image}
+                alt="Product image"
+              /> 
+              </Link>
               <div className="absolute top-2 right-2 bg-white rounded-full py-1 px-2">
                 <i class="fa-regular fa-heart fa-lg"></i>
               </div>
-              <h3 className="font-bold text-xl mt-3">₹ 48,000</h3>
-              <p>3 bds -3 Ba - 1650 ft2</p>
-              <p>villa plot BHK 4 cent</p>
+              <h3 className="font-bold text-xl mt-3">₹ {product.price}</h3>
+              <p>{ product.title }</p>
               <div className="flex justify-between text-gray-400 text-sm">
-                <p>Paris ,Noida</p>
-                <p className="uppercase">Jul 22</p>
+                <p className="uppercase">{ product.createdAt }</p>
               </div>
             </div>
           </div>
         </div>
-        <div className="border border-gray-400 rounded-sm">
-          <div className="w-25 p-2">
-            <div className="relative">
-              <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.1YM53mG10H_U25iPjop83QHaEo%26pid%3DApi&f=1&ipt=e7e921477d4dc151562bbef7433e465bc2abe7390122127218b510c3056552cc&ipo=images"
-                alt=""
-              />
-              <div className="absolute top-2 right-2 bg-white rounded-full py-1 px-2">
-                <i class="fa-regular fa-heart fa-lg"></i>
-              </div>
-              <h3 className="font-bold text-xl mt-3">₹ 48,000</h3>
-              <p>3 bds -3 Ba - 1650 ft2</p>
-              <p>villa plot BHK 4 cent</p>
-              <div className="flex justify-between text-gray-400 text-sm">
-                <p>Paris ,Noida</p>
-                <p className="uppercase">Jul 22</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="border border-gray-400 rounded-sm">
-          <div className="w-25 p-2">
-            <div className="relative">
-              <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.1YM53mG10H_U25iPjop83QHaEo%26pid%3DApi&f=1&ipt=e7e921477d4dc151562bbef7433e465bc2abe7390122127218b510c3056552cc&ipo=images"
-                alt=""
-              />
-              <div className="absolute top-2 right-2 bg-white rounded-full py-1 px-2">
-                <i class="fa-regular fa-heart fa-lg"></i>
-              </div>
-              <h3 className="font-bold text-xl mt-3">₹ 48,000</h3>
-              <p>3 bds -3 Ba - 1650 ft2</p>
-              <p>villa plot BHK 4 cent</p>
-              <div className="flex justify-between text-gray-400 text-sm">
-                <p>Paris ,Noida</p>
-                <p className="uppercase">Jul 22</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

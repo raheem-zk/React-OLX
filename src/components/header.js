@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import SignUp from "./SignUp";
+import { AuthContext, FirebaseContext } from "../store/FirebaseContext";
+import { Link } from "react-router-dom";
 
-export default function Header() {
+ function Header() {
   const [modal, setModal] = useState(false);
+  const {user} = useContext(AuthContext)
+  const {db, auth} = useContext(FirebaseContext);
 
+  console.log(user, 'its from header');
   const showModal = () => {
     setModal(true);
   };
-
+  const Logout = ()=>{
+    auth.signOut();
+  }
   return (
     <>
       {modal ? <SignUp setModal={setModal} /> : ""}
@@ -28,7 +35,7 @@ export default function Header() {
               placeholder="india"
               className="rounded-md border-2 border-black p-2 pl-11 pr-10 text-lg text-gray-900 bg-white"
             />
-            <i class="fa-solid fa-angle-down fa-xl absolute top-6 right-3 transform translate-y-1/2 cursor-pointer"></i>
+            <i className="fa-solid fa-angle-down fa-xl absolute top-6 right-3 transform translate-y-1/2 cursor-pointer"></i>
           </div>
           <div className="flex flex-1 ml-5">
             <input
@@ -43,17 +50,30 @@ export default function Header() {
           <h4 className="font-semibold mt-2 ml-5 mr-2">ENGLISH</h4>
           <i className="fa-solid fa-angle-down fa-xl mt-5"></i>
           <p
-            onClick={showModal}
+            onClick={user ? undefined : showModal}
             className="font-bold mt-2 underline ml-7 cursor-pointer hover:no-underline"
           >
-            Login
+            { user ? `Welcom ${user.displayName }` : 'Login'}
           </p>
-          <button className="relative font-bold ml-5 rounded-full px-6 uppercase cursor-pointer shadow-lg overflow-hidden">
-            <i className="fa-solid fa-plus fa-lg"></i> Sell
+          { user && <p
+          onClick={Logout}
+            className="font-bold mt-2 underline ml-7 cursor-pointer hover:no-underline"
+          >
+            Logout
+          </p> }
+          {user ? <Link to='/post' className="relative font-bold ml-5 rounded-full px-6 uppercase cursor-pointer shadow-lg overflow-hidden">
+            <i className="fa-solid fa-plus fa-lg mt-6"></i> Sell
             <span className="absolute inset-0 rounded-full border-4 border-t-blue-400 border-l-yellow-400 border-x-blue-600 border-b-yellow-400"></span>
-          </button>
+          </Link> : <Link  onClick={user ? undefined : showModal} className="relative font-bold ml-5 rounded-full px-6 uppercase cursor-pointer shadow-lg overflow-hidden">
+            <i className="fa-solid fa-plus fa-lg mt-6"></i> Sell
+            <span className="absolute inset-0 rounded-full border-4 border-t-blue-400 border-l-yellow-400 border-x-blue-600 border-b-yellow-400"></span>
+          </Link>}
+          
         </div>
       </div>
     </>
   );
 }
+
+
+export default Header;
